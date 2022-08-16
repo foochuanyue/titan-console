@@ -1,0 +1,7 @@
+{
+  "name": "division_console",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
