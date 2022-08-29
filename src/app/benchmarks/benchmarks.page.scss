@@ -1,0 +1,105 @@
+ion-button{
+  background-color:white;
+  box-shadow:0px 1px 5px #0000004D;
+  width:11vw;
+  height:2.4vw;
+  border-radius:1.4vw;
+  color:#000000;
+  font-size:14px;
+  letter-spacing:1.4px;
+  text-transform: uppercase;
+  font-family:Lato;
+  font-weight:700;
+  margin-left:0.79vw;
+}
+
+.category{
+  width:17.6vw;
+  height:4.4vh;
+  background:#000000;
+  box-shadow: 0px 1px 5px #0000004D;
+  border-radius:1.4vw;
+  color:white;
+  margin:10px;
+  font-size:16px;
+  letter-spacing:1.6px;
+  font-weight:700;
+  font-family:Lato;
+}
+
+button.active{
+  border: 1px solid white;
+}
+
+.up{
+  border-radius:4px;
+  font-size:12px;
+  letter-spacing:1.2px;
+  font-weight:700;
+  font-family:Lato;
+  background-color:#EE4742;
+  color:white;
+  width:36px;
+  height:32px;
+  margin-left:6px;
+}
+
+.down{
+  border-radius:4px;
+  border:1px solid white;
+  font-size:12px;
+  letter-spacing:1.2px;
+  font-weight:700;
+  font-family:Lato;
+  background-color:#000000;
+  color:white;
+  width:36px;
+  height:32px;
+  margin-left:3px;
+}
+
+.exercise{
+  width:55px;
+  font-size:12px;
+  letter-spacing:1.2px;
+  height:32px;
+}
+
+ion-item {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  --padding-start: 0px;
+  --inner-padding-start: 0px;
+  --padding-top: 0px;
+  --inner-padding-top: 0px;
+  --padding-bottom: 0px;
+  --inner-padding-bottom: 0px;
+  // here other custom CSS from documentation
+}
+
+/* Chrome, Safari, Edge, Opera */
+::ng-deep {
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+}
+
+ion-select::part(icon) {
+    display: none !important;
+   }

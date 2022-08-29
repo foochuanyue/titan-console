@@ -1,20 +1,34 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" style="margin-top:50px;">
   <ion-toolbar>
     <ion-title>
-      Blank
+      <img src="../../assets/images/Division Athletics Logo@2x.png" style="width:11.5vw;margin-left:3.6vw;"/>
     </ion-title>
+    <ion-buttons slot="end" style="margin-right:4.5vw;">
+      <ion-button (click)="benchmarks()">benchmark</ion-button>
+      <ion-button (click)="home()" style="background-color:#EE4742;color:white;">homepage</ion-button>
+      <ion-button (click)="tncs()">T&Cs</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div style="box-shadow:0px 0px 20px #505050BF;background: transparent linear-gradient(333deg, #1A1A1A 0%, #212121 100%) 0% 0% no-repeat padding-box;width:90vw;margin:auto;margin-top:100px;">
+    <ion-row class="ion-justify-content-center">
+      <button (click)="create()">+ Create post</button>
+    </ion-row>
+    <ion-row style="margin-top:6.8vh">
+      <ion-col *ngFor="let post of posts" size="3" style="text-align:center;">
+        <ion-card style="--background:#000000;margin:10px;width:100%;">
+          <img src="{{post.urlImage}}"/>
+          <ion-card-header>
+            <ion-card-title style="font-family:Erbaum;font-size:24px;letter-spacing:-1.2px;font-weight:700;color:white;text-transform:uppercase;">{{post.title}}</ion-card-title>
+            <ion-card-subtitle style="font-weight:200;color:white;font-size:12px;letter-spacing:1.2px;">{{post.subtitle}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content style="font-weight:200;color:white;font-size:12px;letter-spacing:1.2px;">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
   </div>
 </ion-content>

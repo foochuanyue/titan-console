@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="11.993" height="11.993" viewBox="0 0 11.993 11.993">
+  <g id="EDIT_ICON" data-name="EDIT ICON" transform="translate(0 -0.004)">
+    <g id="Group_161" data-name="Group 161" transform="translate(0 0.86)">
+      <g id="Group_160" data-name="Group 160">
+        <path id="Path_254" data-name="Path 254" d="M9.851,39.277a.428.428,0,0,0-.428.428v4.283a.428.428,0,0,1-.428.428H1.285a.428.428,0,0,1-.428-.428V35.422a.428.428,0,0,1,.428-.428h5.14a.428.428,0,1,0,0-.857H1.285A1.285,1.285,0,0,0,0,35.422v8.566a1.285,1.285,0,0,0,1.285,1.285h7.71a1.285,1.285,0,0,0,1.285-1.285V39.705A.428.428,0,0,0,9.851,39.277Z" transform="translate(0 -34.137)" fill="#fff"/>
+      </g>
+    </g>
+    <g id="Group_163" data-name="Group 163" transform="translate(2.57 0.004)">
+      <g id="Group_162" data-name="Group 162" transform="translate(0 0)">
+        <path id="Path_255" data-name="Path 255" d="M111.351.484a1.639,1.639,0,0,0-2.319,0l-5.642,5.641a.433.433,0,0,0-.1.167l-.857,2.57a.428.428,0,0,0,.406.564.435.435,0,0,0,.135-.022l2.57-.857a.428.428,0,0,0,.167-.1L111.351,2.8A1.64,1.64,0,0,0,111.351.484Z" transform="translate(-102.409 -0.004)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

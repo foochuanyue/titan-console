@@ -1,0 +1,373 @@
+<ion-header [translucent]="true" style="margin-top:50px;">
+  <ion-toolbar>
+    <ion-title>
+      <img src="../../assets/images/Division Athletics Logo@2x.png" style="width:11.5vw;margin-left:3.6vw;"/>
+    </ion-title>
+    <ion-buttons slot="end" style="margin-right:4.5vw;">
+      <ion-button style="background-color:#EE4742;color:white;" (click)="onBenchmarks()">benchmark</ion-button>
+      <ion-button (click)="onHome()">homepage</ion-button>
+      <ion-button (click)="onTncs()">T&Cs</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="box-shadow:0px 0px 20px #505050BF;background: transparent linear-gradient(333deg, #1A1A1A 0%, #212121 100%) 0% 0% no-repeat padding-box;width:68.7vw;margin:auto;margin-top:100px;">
+    <ion-row class="ion-justify-content-center">
+      <button [ngClass]="activeCat=='Strength'? 'active': 'inactive'" class="category" (click)="strengthcat()">
+        <ion-row class="ion-align-items-center">
+          <ion-col style="text-align:left;" size="2">
+              <img src="../../assets/images/STRENGTH ICON@3x.png" width="29"/>
+          </ion-col>
+          <ion-col size="8">
+              <b>STRENGTH</b>
+          </ion-col>
+          <ion-col size="2">
+          </ion-col>
+        </ion-row>
+      </button>
+      <button [ngClass]="activeCat=='Conditioning'? 'active': 'inactive'" class="category" (click)="conditioningcat()">
+        <ion-row class="ion-align-items-center">
+          <ion-col style="text-align:left;" size="2">
+              <img src="../../assets/images/CONDITIONING ICON@3x.png" width="29"/>
+          </ion-col>
+          <ion-col size="8">
+              <b>CONDITIONING</b>
+          </ion-col>
+          <ion-col size="2">
+          </ion-col>
+        </ion-row>
+      </button>
+    </ion-row>
+    <ion-row class="ion-justify-content-center" style="margin-top:50px;margin-bottom:30px;">
+      <button [disabled]="disabledEdits" (click)="addCat()" style="text-transform:uppercase;width:10.5vw;height:3vh;background-color:#FFFFFF;box-shadow: 0px 1px 5px #0000004D;border-raidus:0.3vh;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+        ADD Category
+      </button>
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="auto" *ngFor="let category of categories;let i = index;">
+        <div style="background-color:#0A0A0A;width:339px;margin:25px;padding-bottom:20px;">
+          <div style="background-color:white;width:100%;height:2.4vw;border-radius:4px;">
+            <ion-row *ngIf="i == editCat" class="ion-align-items-center" style="height:100%;">
+              <ion-select (ionChange)="catIndexChange($event)" class="custom-options" style="margin-left:12px;margin-right:6px;background-color:#EE4742;--padding-start:0px;--padding-end:0px;text-align:center;width:1.3vw;height:1.3vw;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;" value="{{i+1}}">
+                <ion-select-option *ngFor="let option of categories;let l = index;" value="{{l+1}}">{{l+1}}</ion-select-option>
+              </ion-select>
+              <ion-input [(ngModel)]="this.categories[i].name" style="margin-right:6px;width:20%;height:1.6vw;box-shadow:0px 1px 5px #0000004D">
+
+              </ion-input>
+              <button (click)="saveCat(i)" style="margin-right:5px;background-color:#4AB26E;width:1.3vw;height:1.3vw;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                <img src="../../assets/icon/TICK ICON.svg"/>
+              </button>
+              <button (click)="deleteCat(i)" style="margin-right:12px;background-color:#EE4742;width:1.3vw;height:1.3vw;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                <img src="../../assets/icon/DUSTBIN ICON.svg"/>
+              </button>
+            </ion-row>
+            <ion-row *ngIf="i != editCat" class="ion-align-items-center" style="height:100%;">
+              <button style="margin-left:12px;margin-right:6px;background-color:#000000;width:1.3vw;height:1.3vw;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                {{i+1}}
+              </button>
+              <ion-col style="text-transform:uppercase;font-size:14px;font-weight:700;letter-spacing:1.4px;font-family:Lato;">
+                {{category.name}}
+              </ion-col>
+              <button (click)="onEditCat(i)" [disabled]="disabledEdits" style="margin-right:12px;background-color:black;width:1.3vw;height:1.3vw;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                <img src="../../assets/icon/EDIT ICON.svg"/>
+              </button>
+            </ion-row>
+          </div>
+          <div>
+            <ion-row class="ion-justify-content-center">
+              <button [disabled]="disabledEdits" (click)="addGroup(i)" style="width:5.4vw;height:1.7vw;background-color:white;text-transform:uppercase;font-size:12px;letter-spacing:1.2px;font-weight:300;font-family:Lato;border-radius:0.2vw;margin-top:30px;margin-bottom:10px;">
+                + group
+              </button>
+            </ion-row>
+          </div>
+          <!--<div *ngIf="activeCat == 'Conditioning'">
+            <ion-row class="ion-justify-content-between" style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:20px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+              <button (click)="liveBenchmark(i)" [disabled]="disabledEdits" style="color:white;background-color:#EE4742;width:57px;height:19px;border-radius:15px;font-size:9px;letter-spacing:0.9px;font-family:Lato;font-weight:700;text-transform:uppercase;">LIVE</button>
+            </ion-row>
+            <ion-row style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:10px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+              Benchmark/final test
+            </ion-row>
+            <div *ngFor="let exercise of exercises[i];let j = index;">
+              <div *ngIf="exerciseEdit[0] == [i] && exerciseEdit[1]==j" style="border:0.5px solid white;padding-top:15px;margin:5px;">
+                <ion-row class="ion-justify-content-center">
+                  <textarea [(ngModel)]="this.exercises[i][j].name" style="width:301px;height:57px;resize:none;">{{exercise.name}}</textarea>
+                </ion-row>
+                <ion-row style="margin-top:10px;" class="ion-justify-content-center" *ngFor="let unit of exercise.measure; let k = index;">
+                  <div style="font-size:12px;font-family:Lato;font-weight:300;letter-spacing:1.2px;width:220px;height:32px;background-color:white;color:black;box-shadow: 0px 1px 5px #0000004D;border-radius: 4px;text-align:center;text-transform:uppercase;">
+                    <ion-row class="ion-align-items-center ion-justify-content-center" style="height:100%;">
+                      {{unit}}
+                    </ion-row>
+                  </div>
+                  <button (click)="onExerciseRemoveUnit(k)" style="margin-left:-16px;margin-top:-5px;background-color:#EE4742;width:20px;height:20px;border-radius:10px;color:white;">
+                    <img src="../../assets/icon/X ICON.svg"/>
+                  </button>
+                  <button (click)="onUnitUp(k)" [ngClass]="exercise.priority[k]== 0? 'up': 'down'">
+                    <ion-icon name="chevron-up-outline"></ion-icon>
+                  </button>
+                  <button (click)="onUnitDown(k)" [ngClass]="exercise.priority[k]==1? 'up': 'down'">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                  </button>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:10px;">
+                  <ion-select [(ngModel)]="unitSelector" class="custom-options" style="font-size:12px;font-family:Lato;font-weight:300;letter-spacing:1.2px;width:220px;height:32px;background-color:white;color:black;box-shadow: 0px 1px 5px #0000004D;border-radius: 4px;text-align:center;text-transform:uppercase;" placeholder="+ unit">
+                    <ion-select-option value="Weight">Weight</ion-select-option>
+                    <ion-select-option value="Reps">Reps</ion-select-option>
+                    <ion-select-option value="Time">Time</ion-select-option>
+                    <ion-select-option value="Rounds">Rounds</ion-select-option>
+                    <ion-select-option value="Cals">Cals</ion-select-option>
+                    <ion-select-option value="Distance">Distance</ion-select-option>
+                    <ion-select-option value="Cal/Hr">Cal/Hr</ion-select-option>
+                    <ion-select-option value="Watts">Watts</ion-select-option>
+                    <ion-select-option value="Split Time">Split Time</ion-select-option>
+                  </ion-select>
+                  <button (click)="onExerciseEditAddUnit()" style="border-radius:4px;font-size:12px;letter-spacing:1.2px;font-weight:700;font-family:Lato;background-color:#EE4742;color:white;width:75px;height:32px;margin-left:6px;">
+                    ADD
+                  </button>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:5.5px;">
+                  <button (click)="onExerciseEditUp(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                    <ion-icon name="chevron-up-outline"></ion-icon>
+                  </button>
+                  <button (click)="onExerciseEditDown(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                  </button>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:16px;margin-bottom:17px;">
+                  <button (click)="onExerciseEditSave()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                    save
+                  </button>
+                  <button (click)="onExerciseEditCancel()" style="margin:5px;width:88px;height:29px;background-color:white;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:black;">
+                    cancel
+                  </button>
+                  <button (click)="onExerciseEditDelete()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                    <img src="../../assets/icon/DUSTBIN ICON.svg"/>
+                  </button>
+                </ion-row>
+              </div>
+              <div *ngIf="exerciseEdit[0] != [i] || exerciseEdit[1]!=j">
+                <ion-row class="ion-justify-content-between" style="white-space: pre-line;color:#777777;padding-left:20px;padding-right:20px;text-transform:uppercase;font-size:12px;letter-spacing:1.2px;margin-top:7.5px;">
+                   {{exercise.name}}<button [disabled]="disabledEdits" (click)="onExerciseEdit(i, j)" style="background:none;color:white;"><img  src="../../assets/icon/EDIT ICON.svg"/></button>
+                </ion-row>
+                <ion-row *ngFor="let measure of exercise.measure" style="padding-left:20px;margin-top:10px;">
+                 <ion-col *ngFor="let unit of units[measure];" size="auto" style="color:white;--ion-grid-column-padding:0px;margin-right:10px;">
+                   <ion-row>
+                       <ion-col size="auto">
+                         <ion-row class="ion-justify-content-center ion-align-items-center exercise" style="background-color:#222222;">+</ion-row>
+                       </ion-col>
+                       <ion-col size="auto">
+                         <ion-row class="ion-justify-content-start ion-align-items-center" style="text-align:left;font-size:12px;letter-spacing:1.2px;height:32px;padding-left:10px;text-transform:uppercase;">
+                           {{unit}}
+                         </ion-row>
+                       </ion-col>
+                   </ion-row>
+                 </ion-col>
+               </ion-row>
+              </div>
+            </div>
+            <div *ngFor="let season of seasons[i];let j = index;">
+              <ion-row *ngIf="editSeason[0]==i && editSeason[1]==j" class="ion-justify-content-between" style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:20px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+                <button [disabled]="disabledEdits" style="color:white;background-color:#333333;width:57px;height:19px;border-radius:15px;font-size:9px;letter-spacing:0.9px;font-family:Lato;font-weight:700;text-transform:uppercase;">
+                  LIVE
+                </button>
+                <ion-input [(ngModel)]="this.seasons[i][j].name" style="background-color:white;color:black;margin-left:8px;width:88px;height:25px;box-shadow:0px 1px 5px #0000004D;margin-right:30px;">
+                </ion-input>
+                <button (click)="onSeasonUp(j)" style="background-color:white;width:25px;height:25px;color:black;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;margin-right:2.5px;">
+                  <ion-icon name="chevron-up-outline"></ion-icon>
+                </button>
+                <button (click)="onSeasonDown(j)" style="margin-right:5px;background-color:white;width:25px;height:25px;color:black;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                  <ion-icon name="chevron-down-outline"></ion-icon>
+                </button>
+                <button (click)="saveSeason()" style="margin-right:5px;background-color:#4AB26E;width:25px;height:25px;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                  <img src="../../assets/icon/TICK ICON.svg"/>
+                </button>
+                <button (click)="deleteSeason()" style="background-color:#EE4742;width:25px;height:25px;color:white;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:300;">
+                  <img src="../../assets/icon/DUSTBIN ICON.svg"/>
+                </button>
+              </ion-row>
+              <ion-row *ngIf="editSeason[0]!=i || editSeason[1]!=j" class="ion-justify-content-between" style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:20px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+                <ion-col style="--ion-grid-column-padding:0px;">
+                  <ion-row class="ion-align-items-center" style="height:19px;">
+                    <button [disabled]="disabledEdits" style="color:white;background-color:#333333;width:57px;height:19px;border-radius:15px;font-size:9px;letter-spacing:0.9px;font-family:Lato;font-weight:700;text-transform:uppercase;">
+                      LIVE
+                    </button>
+                    <span style="color:#EE4742;font-size:14px;letter-spacing:1.4px;font-family:Lato;font-weight:700;margin-left:10px;">{{season.name}}</span>
+                  </ion-row>
+                </ion-col>
+                <button [disabled]="disabledEdits" (click)="onSeasonEdit(i, j)" style="background:none;color:white;"><img  src="../../assets/icon/EDIT ICON.svg"/></button>
+              </ion-row>
+              <ion-row style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:10px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+                Benchmark/final test
+              </ion-row>
+              <div *ngFor="let exercise of pastBenchmarks[i][j];let k = index;">
+                <div *ngIf="pastEdit[0] == [i] && pastEdit[1]==j && pastEdit[2]==k" style="border:0.5px solid white;padding-top:15px;margin:5px;">
+                  <ion-row class="ion-justify-content-center">
+                    <textarea [(ngModel)]="this.pastBenchmarks[i][j][k].name" style="width:301px;height:57px;resize:none;">{{exercise.name}}</textarea>
+                  </ion-row>
+                  <ion-row style="margin-top:10px;" class="ion-justify-content-center" *ngFor="let unit of exercise.measure; let m = index;">
+                    <div style="font-size:12px;font-family:Lato;font-weight:300;letter-spacing:1.2px;width:220px;height:32px;background-color:white;color:black;box-shadow: 0px 1px 5px #0000004D;border-radius: 4px;text-align:center;text-transform:uppercase;">
+                      <ion-row class="ion-align-items-center ion-justify-content-center" style="height:100%;">
+                        {{unit}}
+                      </ion-row>
+                    </div>
+                    <button (click)="onPastRemoveUnit(m)" style="margin-left:-16px;margin-top:-5px;background-color:#EE4742;width:20px;height:20px;border-radius:10px;color:white;">
+                      <img src="../../assets/icon/X ICON.svg"/>
+                    </button>
+                    <button [ngClass]="exercise.priority[m]== 0? 'up': 'down'" (click)="onPastUnitUp(m)">
+                      <ion-icon name="chevron-up-outline"></ion-icon>
+                    </button>
+                    <button [ngClass]="exercise.priority[m]== 1? 'up': 'down'" (click)="onPastUnitDown(m)">
+                      <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center" style="margin-top:10px;">
+                    <ion-select [(ngModel)]="unitSelector" class="custom-options" style="font-size:12px;font-family:Lato;font-weight:300;letter-spacing:1.2px;width:220px;height:32px;background-color:white;color:black;box-shadow: 0px 1px 5px #0000004D;border-radius: 4px;text-align:center;text-transform:uppercase;" placeholder="+ unit">
+                      <ion-select-option value="Weight">Weight</ion-select-option>
+                      <ion-select-option value="Reps">Reps</ion-select-option>
+                      <ion-select-option value="Time">Time</ion-select-option>
+                      <ion-select-option value="Rounds">Rounds</ion-select-option>
+                      <ion-select-option value="Cals">Cals</ion-select-option>
+                      <ion-select-option value="Distance">Distance</ion-select-option>
+                      <ion-select-option value="Cal/Hr">Cal/Hr</ion-select-option>
+                      <ion-select-option value="Watts">Watts</ion-select-option>
+                      <ion-select-option value="Split Time">Split Time</ion-select-option>
+                    </ion-select>
+                    <button (click)="onPastEditAddUnit()" style="border-radius:4px;font-size:12px;letter-spacing:1.2px;font-weight:700;font-family:Lato;background-color:#EE4742;color:white;width:75px;height:32px;margin-left:6px;">
+                      ADD
+                    </button>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center" style="margin-top:5.5px;">
+                    <button (click)="onPastEditUp(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                      <ion-icon name="chevron-up-outline"></ion-icon>
+                    </button>
+                    <button (click)="onPastEditDown(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                      <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                  </ion-row>
+                  <ion-row class="ion-justify-content-center" style="margin-top:16px;margin-bottom:17px;">
+                    <button (click)="onPastEditSave()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                      save
+                    </button>
+                    <button (click)="onPastEditCancel()" style="margin:5px;width:88px;height:29px;background-color:white;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:black;">
+                      cancel
+                    </button>
+                    <button (click)="onPastEditDelete()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                      <img src="../../assets/icon/DUSTBIN ICON.svg"/>
+                    </button>
+                  </ion-row>
+                </div>
+                <div *ngIf="pastEdit[0] != [i] || pastEdit[1]!=j || pastEdit[2]!=k">
+                  <ion-row class="ion-justify-content-between" style="white-space: pre-line;color:#777777;padding-left:20px;padding-right:20px;text-transform:uppercase;font-size:12px;letter-spacing:1.2px;margin-top:7.5px;">
+                     {{exercise.name}}<button  (click)="onPastExerciseEdit(i, j, k)" [disabled]="disabledEdits" style="background:none;color:white;"><img  src="../../assets/icon/EDIT ICON.svg"/></button>
+                  </ion-row>
+                  <ion-row *ngFor="let measure of exercise.measure" style="padding-left:20px;margin-top:10px;">
+                   <ion-col *ngFor="let unit of units[measure];" size="auto" style="color:white;--ion-grid-column-padding:0px;margin-right:10px;">
+                     <ion-row>
+                         <ion-col size="auto">
+                           <ion-row class="ion-justify-content-center ion-align-items-center exercise" style="background-color:#222222;">+</ion-row>
+                         </ion-col>
+                         <ion-col size="auto">
+                           <ion-row class="ion-justify-content-start ion-align-items-center" style="text-align:left;font-size:12px;letter-spacing:1.2px;height:32px;padding-left:10px;text-transform:uppercase;">
+                             {{unit}}
+                           </ion-row>
+                         </ion-col>
+                     </ion-row>
+                   </ion-col>
+                 </ion-row>
+                </div>
+              </div>
+            </div>
+          </div>-->
+          <div *ngIf="activeCat == 'Strength'">
+            <div *ngFor="let exercise of exercises[i];let j = index;">
+              <div *ngIf="exerciseEdit[0] == [i] && exerciseEdit[1]==j" style="border:0.5px solid white;padding-top:15px;margin:5px;">
+                <ion-row class="ion-justify-content-center">
+                  <textarea [(ngModel)]="this.exercises[i][j].name" style="width:301px;height:57px;resize:none;">{{exercise.name}}</textarea>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:10px;">
+                  <ion-select [(ngModel)]="exercises[i][j].measure" class="custom-options" style="font-size:12px;font-family:Lato;font-weight:300;letter-spacing:1.2px;width:220px;height:32px;background-color:white;color:black;box-shadow: 0px 1px 5px #0000004D;border-radius: 4px;text-align:center;text-transform:uppercase;" placeholder="+ unit" value="{{exercise.measure}}">
+                    <ion-select-option value="Weight">Weight</ion-select-option>
+                    <ion-select-option value="Reps">Reps</ion-select-option>
+                  </ion-select>
+                  <button *ngIf="exercise.measure=='Weight'" (click)="onExerciseEditAddRep()" style="font-size:12px;letter-spacing:1.2px;font-weight:700;font-family:Lato;background-color:#EE4742;color:white;width:75px;height:32px;margin-left:6px;">
+                    ADD REP
+                  </button>
+                </ion-row>
+                <ion-row *ngIf="exercise.measure=='Weight'" style="padding-left:13px;padding-right:13px;margin-top:10px;">
+                  <ion-item lines="none" *ngFor="let rep of exercise.reps;let k = index; trackBy: customTrackBy">
+                    <button (click)="onExerciseEditRemoveRep(k)" style="position:absolute;z-index:99;top:0px;right:0px;background-color:#EE4742;width:20px;height:20px;border-radius:10px;color:white;">
+                      <img src="../../assets/icon/X ICON.svg"/>
+                    </button>
+                		<ion-input inputmode="numeric" type="number" [(ngModel)]="exercises[i][j].reps[k]" style="color:black;width:25px;height:32px;text-align:center;borer-radius:4px;background-color:white;margin-right:12px;"></ion-input>
+                	</ion-item>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:5.5px;">
+                  <button (click)="onExerciseEditUp(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                    <ion-icon name="chevron-up-outline"></ion-icon>
+                  </button>
+                  <button (click)="onExerciseEditDown(j)" style="width:106px;height:19px;background-color:white;border-radius:4px;margin:2.5px;">
+                    <ion-icon name="chevron-down-outline"></ion-icon>
+                  </button>
+                </ion-row>
+                <ion-row class="ion-justify-content-center" style="margin-top:16px;margin-bottom:17px;">
+                  <button (click)="onExerciseEditSave()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                    save
+                  </button>
+                  <button (click)="onExerciseEditCancel()" style="margin:5px;width:88px;height:29px;background-color:white;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:black;">
+                    cancel
+                  </button>
+                  <button (click)="onExerciseEditDelete()" style="margin:5px;width:88px;height:29px;background-color:#EE4742;border-radius:22px;font-size:12px;letter-spacing:1.2px;font-family:Lato;font-weight:700;text-transform:uppercase;color:white;">
+                    <img src="../../assets/icon/DUSTBIN ICON.svg"/>
+                  </button>
+                </ion-row>
+              </div>
+              <div *ngIf="exerciseEdit[0] != [i] || exerciseEdit[1]!=j">
+                <ion-row class="ion-justify-content-between" style="padding-left:20px;padding-right:20px;margin-bottom:7px;margin-top:20px;color:white;font-size:14px;letter-spacing:1.4px;font-family:Lato;text-transform:uppercase">
+                  {{exercise.name}}<button [disabled]="disabledEdits" (click)="onExerciseEdit(i, j)" style="background:none;color:white;"><img  src="../../assets/icon/EDIT ICON.svg"/></button>
+                </ion-row>
+                <ion-row style="padding-left:20px;padding-right:20px;">
+                  <ion-col size="3" style="color:white;text-transform:uppercase;font-size:12px;letter-spacing:1.2px;--ion-grid-column-padding:0px;">
+                    <ion-row>
+                      <ion-col *ngIf="exercise.measure=='Weight'">
+                        <ion-row class="ion-justify-content-start ion-align-items-center exercise" style="color:#777777;">
+                          Reps
+                        </ion-row>
+                        <ion-row class="ion-justify-content-start ion-align-items-center exercise">
+                          Weight
+                        </ion-row>
+                      </ion-col>
+                      <ion-col *ngIf="exercise.measure=='Weight' && exercise.reps.length>4" style="height:100%;">
+                        <ion-row class="ion-justify-content-start ion-align-items-center exercise" style="color:#777777;">
+                          Reps
+                        </ion-row>
+                        <ion-row class="ion-justify-content-start ion-align-items-center exercise">
+                          Weight
+                        </ion-row>
+                      </ion-col>
+                      <ion-col *ngIf="exercise.measure=='Reps'">
+                        <ion-row class="ion-justify-content-start ion-align-items-center exercise" style="color:white;">
+                          Reps
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                  <ion-col size="9" style="color:white;--ion-grid-column-padding:0px;">
+                    <ion-row>
+                      <ion-col size="3" *ngFor="let rep of exercise.reps" style="">
+                        <ion-row *ngIf="exercise.measure!='Reps'" class="ion-justify-content-center ion-align-items-center exercise" style="color:#777777;">{{rep}}</ion-row>
+                        <ion-row class="ion-justify-content-center ion-align-items-center exercise" style="background-color:#222222;width:95%;">+</ion-row>
+                      </ion-col>
+                      <ion-col size="3" *ngIf="exercise.measure=='Reps'" style="">
+                        <ion-row class="ion-justify-content-center ion-align-items-center exercise" style="background-color:#222222;width:95%;">+</ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

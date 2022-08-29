@@ -24,3 +24,50 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.errors-modal{
+  --background:#1A1A1A;
+  --height: 200px;
+  --width:80%;
+  --border-radius:20px;
+  margin:auto;
+}
+
+.loading-css{
+  --backdrop-opacity:0.8;
+  --background:none;
+  --width:150px;
+}
+
+/* Popover Interface: set color for the popover using Item's CSS variables */
+.my-custom-interface .select-interface-option {
+  --color: white;
+  --color-hover: white;
+}
+
+/* Action Sheet Interface: set color for the action sheet using its button CSS variables */
+.my-custom-interface .select-interface-option {
+  --button-color: white;
+  --button-color-hover: white;
+}
+
+/* Alert Interface: set color for alert options (single selection) */
+.my-custom-interface .select-interface-option .alert-radio-label {
+  color: white;
+}
+
+/* Alert Interface: set color for alert options (multiple selection) */
+.my-custom-interface .select-interface-option .alert-checkbox-label {
+  color: white;
+}
+
+/* Alert Interface: set color for checked alert options (single selection) */
+.my-custom-interface .select-interface-option[aria-checked=true] .alert-radio-label {
+  color: white;
+}
+
+/* Alert Interface: set color for checked alert options (multiple selection) */
+.my-custom-interface .select-interface-option[aria-checked=true] .alert-checkbox-label {
+  color: white;
+}

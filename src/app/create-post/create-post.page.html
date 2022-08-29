@@ -1,0 +1,57 @@
+<ion-header [translucent]="true" style="margin-top:50px;">
+  <ion-toolbar>
+    <ion-title>
+      <img src="../../assets/images/Division Athletics Logo@2x.png" style="width:11.5vw;margin-left:3.6vw;"/>
+    </ion-title>
+    <ion-buttons slot="end" style="margin-right:4.5vw;">
+      <ion-button>benchmark</ion-button>
+      <ion-button>homepage</ion-button>
+      <ion-button>T&Cs</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="background: #1A1A1A 0% 0% no-repeat padding-box;box-shadow: 0px 0px 50px #505050;mix-blend-mode: lighten;opacity: 1;width:985px;height:580px;margin:auto;margin-top:18.2vh;">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="6">
+        <ion-row class="ion-justify-content-center">
+          <input (change)="onFileChange($event)" id="input" type="file" name="image" style="display:none;" />
+          <button class="uploadbutton">
+            <label for="input">Upload file</label>
+          </button>
+        </ion-row>
+        <form [formGroup]="ionicForm" (ngSubmit)="uploadPost()">
+          <div class="labels">
+            title
+          </div>
+          <ion-input formControlName="title" type="text" style="color:white;margin:auto;background-color:#222222;width:331px;height:32px;margin-bottom:10px;"></ion-input>
+          <div class="labels">
+            subtitle
+          </div>
+          <ion-input formControlName="subtitle" type="text" style="color:white;margin:auto;background-color:#222222;width:331px;height:32px;margin-bottom:10px;"></ion-input>
+          <div class="labels">
+            url
+          </div>
+          <ion-input formControlName="url" type="text" style="color:white;margin:auto;background-color:#222222;width:331px;height:32px;margin-bottom:10px;"></ion-input>
+          <ion-row class="ion-justify-content-center">
+            <ion-button  type="submit" expand="block" color="danger"><b>Save</b></ion-button>
+            <ion-button expand="block" color="light" (click)="goBack();"><b>Cancel</b></ion-button>
+          </ion-row>
+        </form>
+      </ion-col>
+      <ion-col size="6" style="text-align:center;">
+        <ion-card style="--background:#000000;margin:10px;width:331px;">
+          <img id="pre-load" src="../../assets/images/Clothing_Mens Basic.png"/>
+          <ion-card-header>
+            <ion-card-title style="font-family:Erbaum;font-size:24px;letter-spacing:-1.2px;font-weight:700;color:white;text-transform:uppercase;">{{ionicForm.get('title').value}}</ion-card-title>
+            <ion-card-subtitle style="font-weight:200;color:white;font-size:12px;letter-spacing:1.2px;">{{ionicForm.get('subtitle').value}}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content style="font-weight:200;color:white;font-size:12px;letter-spacing:1.2px;">
+
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

@@ -13,17 +13,33 @@ ion-button{
   margin-left:0.79vw;
 }
 
-button{
-  background-color:#EE4742;
-  width:8.95vw;
-  height:2.3vw;
-  border-radius:1.15vw;
-  box-shadow:0px 2px 5px #0000004D;
+.buttontype{
+  background-color:#000000;
+  width:10.7vw;
+  height:2.4vw;
+  border-radius:1.4vw;
+  box-shadow:0px 1px 5px #0000004D;
   color:white;
   text-transform: uppercase;
   font-size:12px;
   font-weight:700;
   letter-spacing:1.2px;
   font-family:Lato;
-  margin-top:5.2vh;
+  margin:0.5vw;
+}
+
+button.active{
+  border: 1px solid white;
+}
+
+.savebutton{
+  width:6.4vw;
+  height:4vh;
+  border-radius:2vh;
+  font-size:12px;
+  letter-spacing:1.2px;
+  font-family:Lato;
+  font-weight:700;
+  margin:10px;
+  text-transform:uppercase;
 }

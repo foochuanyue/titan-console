@@ -1,0 +1,74 @@
+<ion-header [translucent]="true" style="margin-top:50px;">
+  <ion-toolbar>
+    <ion-title>
+      <img src="../../assets/images/Division Athletics Logo@2x.png" style="width:11.5vw;margin-left:3.6vw;"/>
+    </ion-title>
+    <ion-buttons slot="end" style="margin-right:4.5vw;">
+      <ion-button (click)="benchmarks()">benchmark</ion-button>
+      <ion-button (click)="home()">homepage</ion-button>
+      <ion-button style="background-color:#EE4742;color:white;" (click)="tncs()">T&Cs</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div style="box-shadow:0px 0px 20px #505050BF;background: transparent linear-gradient(333deg, #1A1A1A 0%, #212121 100%) 0% 0% no-repeat padding-box;width:45vw;height:76vh;margin:auto;margin-top:5vw;">
+    <ion-row class="ion-align-items-center" style="height:100%;">
+      <ion-col size="4">
+        <ion-row>
+          <button class="buttontype" [ngClass]="active=='Contracts'? 'active': 'inactive'" (click)="onContracts()">
+            contracts
+          </button>
+        </ion-row>
+        <ion-row>
+          <button class="buttontype" [ngClass]="active=='Packages'? 'active': 'inactive'" (click)="onPackages()">
+            packages
+          </button>
+        </ion-row>
+        <ion-row>
+          <button class="buttontype" [ngClass]="active=='Offpeak'? 'active': 'inactive'" (click)="onOffpeak()">
+            off-peak
+          </button>
+        </ion-row>
+        <ion-row>
+          <button class="buttontype" [ngClass]="active=='Trial'? 'active': 'inactive'" (click)="onTrial()">
+            trial
+          </button>
+        </ion-row>
+      </ion-col>
+      <ion-col size="8">
+        <ion-row>
+          <div style="background-color:#000000;width:25.2vw;height:66.7vh;">
+            <ion-row class="ion-justify-content-center" style="margin-top:1.6vw;">
+              <button (click)="heading()" style="margin:2.5px;text-align:center;background-color:#1A1A1A;width:6.2vw;height:1.6vw;color:#EE4742;text-transform:uppercase;font-weight:700:font-family:Lato;font-size:12px;letter-spacing:1.2px;">
+                <ion-row class="ion-justify-content-center ion-align-items-center" style="height:100%;">
+                  heading
+                </ion-row>
+              </button>
+              <button (click)="subheading()" style="margin:2.5px;text-align:center;background-color:#1A1A1A;width:6.2vw;height:1.6vw;color:white;text-transform:uppercase;font-family:Lato;font-size:10px;letter-spacing:1px;">
+                <ion-row class="ion-justify-content-center ion-align-items-center" style="height:100%;">
+                  subheading
+                </ion-row>
+              </button>
+              <button (click)="bodyCopy()" style="margin:2.5px;text-align:center;background-color:#1A1A1A;width:6.2vw;height:1.6vw;color:white;font-weight:300;font-family:Lato;font-size:10px;letter-spacing:1px;">
+                <ion-row class="ion-justify-content-center ion-align-items-center" style="height:100%;">
+                  Body copy
+                </ion-row>
+              </button>
+            </ion-row>
+            <ion-row class="ion-justify-content-center" style="margin-top:2.7vh;">
+              <div id="contentarea" contenteditable="true" style="font-family:Lato;width:17vw;height:48.4vh;background-color:#1A1A1A;color:white;"></div>
+            </ion-row>
+            <ion-row class="ion-justify-content-center" style="margin-top:20px;">
+              <button class="savebutton" style="color:white;background-color:#EE4742" (click)="save()">
+                Save
+              </button>
+              <button class="savebutton" style="color:black;background-color:white;" (click)="clear()">
+                clear
+              </button>
+            </ion-row>
+          </div>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
